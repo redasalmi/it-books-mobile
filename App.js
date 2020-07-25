@@ -9,7 +9,11 @@ const StackNavigator = () => {
 
   return (
     <Stack.Navigator>
-      <Stack.Screen name="books" component={Books} options={{title: 'Books'}} />
+      <Stack.Screen
+        name="books"
+        component={Books}
+        options={{title: 'It Books'}}
+      />
       <Stack.Screen
         name="bookDetail"
         component={BookDetail}

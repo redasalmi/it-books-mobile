@@ -6,12 +6,13 @@ const fetcher = (url) => axios.get(url).then((res) => res.data);
 // fetch newest book or fetch search result
 const useBooks = (search = '', page = 1) => {
   const url = !search ? '/new' : `/search/${search}/${page}`;
-  const {data, error} = useSWR(url, fetcher);
+  const {data, error, mutate} = useSWR(url, fetcher);
 
   return {
     books: data,
     isLoading: !error && !data,
     isError: error,
+    mutate: mutate,
   };
 };
 
