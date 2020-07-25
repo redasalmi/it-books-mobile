@@ -1,10 +1,10 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
-const ApiError = () => {
+const NoMoreBooks = () => {
   return (
     <View style={styles.container}>
-      <Text>There was a network error, please retry later.</Text>
+      <Text style={styles.txt}>No more books results.</Text>
     </View>
   );
 };
@@ -12,9 +12,12 @@ const ApiError = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    marginVertical: 15,
     alignItems: 'center',
+  },
+  txt: {
+    fontWeight: 'bold',
   },
 });
 
-export default ApiError;
+export default NoMoreBooks;

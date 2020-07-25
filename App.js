@@ -1,8 +1,12 @@
 import React from 'react';
 import Books from './src/screens/Books';
 import BookDetail from './src/screens/BookDetail';
+import Header from './src/components/Header';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+
+import {Provider} from 'react-redux';
+import store from './store';
 
 const StackNavigator = () => {
   const Stack = createStackNavigator();
@@ -12,12 +16,20 @@ const StackNavigator = () => {
       <Stack.Screen
         name="books"
         component={Books}
-        options={{title: 'It Books'}}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <Header navigation={navigation} title="It Books" />
+          ),
+        })}
       />
       <Stack.Screen
         name="bookDetail"
         component={BookDetail}
-        options={{title: 'Book Detail'}}
+        options={({navigation}) => ({
+          headerTitle: () => (
+            <Header navigation={navigation} title="Book Detail" />
+          ),
+        })}
       />
     </Stack.Navigator>
   );
@@ -25,9 +37,11 @@ const StackNavigator = () => {
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <StackNavigator />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <StackNavigator />
+      </NavigationContainer>
+    </Provider>
   );
 };
 

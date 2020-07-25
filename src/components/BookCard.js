@@ -59,7 +59,8 @@ const styles = StyleSheet.create({
   title: {
     marginTop: 0,
     marginBottom: 10,
-    alignSelf: 'center',
+    textAlign: 'center',
+    maxWidth: 250,
   },
 });
 

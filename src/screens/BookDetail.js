@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, Text, StyleSheet, Image, FlatList} from 'react-native';
 import Spinner from '../components/Spinner';
 import ApiError from '../components/ApiError';
-import {useBookDetail} from '../books/useBooks';
+import {useDispatch, useSelector} from 'react-redux';
+import {fetchBookDetail, resetBookDetail} from '../redux/actions/fetchBooks';
 
 const BookInfo = (info, infoIndex) => {
   const isEvenRow = infoIndex % 2 === 0;
@@ -20,13 +21,25 @@ const BookInfo = (info, infoIndex) => {
 
 const BookDetail = ({route}) => {
   const {bookIsbn13} = route.params;
-  const {book, isLoading, isError} = useBookDetail(bookIsbn13);
+  const {bookDetail, bookDetail_loading, bookDetail_error} = useSelector(
+    (state) => state.books,
+  );
+  const dispatch = useDispatch();
 
-  if (isLoading) {
+  useEffect(() => {
+    dispatch(fetchBookDetail(bookIsbn13));
+
+    return () => {
+      dispatch(resetBookDetail());
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  if (bookDetail_loading) {
     return <Spinner />;
   }
 
-  if (isError) {
+  if (bookDetail_error) {
     return <ApiError />;
   }
 
@@ -43,7 +56,7 @@ const BookDetail = ({route}) => {
     isbn10,
     isbn13,
     desc,
-  } = book;
+  } = bookDetail;
 
   let bookdata = [
     {header: 'Title', content: title},
@@ -81,7 +94,6 @@ const BookDetail = ({route}) => {
           data={bookdata}
           keyExtractor={(item) => item.content}
           renderItem={({item, index}) => BookInfo(item, index)}
-          scrollEnabled={false}
         />
       </View>
     </View>
@@ -95,9 +107,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
   },
   title: {
+    textAlign: 'center',
     marginTop: 0,
     marginBottom: 10,
-    alignSelf: 'center',
     fontWeight: 'bold',
     fontSize: 18,
     color: '#000bad',
