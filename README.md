@@ -18,8 +18,8 @@ To clone this project and start it, open a terminal and follow this steps:
 	cd it-books-mobile
 	yarn
 	yarn start
-    launch your favorite android emulator
-    yarn android (in a new terminal window)
+	launch your favorite android emulator
+	yarn android (in a new terminal window)
 ```
 
 **Note:**\
