@@ -1,6 +1,6 @@
 # IT BOOKS MOBILE
 
-A mobile to browse for IT, Programming and Computer Science Books.
+A mobile application to browse for IT, Programming and Computer Science Books.
 
 ## Built With
 
