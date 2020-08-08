@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, Image, FlatList} from 'react-native';
 import Spinner from '../components/Spinner';
 import ApiError from '../components/ApiError';
 import {useDispatch, useSelector} from 'react-redux';
-import {fetchBookDetail, resetBookDetail} from '../redux/actions/fetchBooks';
+import {fetchBookDetail, resetBookDetail} from '../features/books/booksSlice';
 
 const BookInfo = (info, infoIndex) => {
   const isEvenRow = infoIndex % 2 === 0;

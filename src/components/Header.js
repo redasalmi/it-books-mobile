@@ -3,7 +3,7 @@ import {Text, View, Pressable, TextInput, StyleSheet} from 'react-native';
 import Modal from 'react-native-modal';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useDispatch} from 'react-redux';
-import {fetchBooks, resetBooks} from '../redux/actions/fetchBooks';
+import {fetchBooks, resetBooks} from '../features/books/booksSlice';
 
 const Header = ({title, navigation}) => {
   const [search, setSearch] = useState('');

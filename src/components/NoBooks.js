@@ -1,10 +1,10 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
-const NoMoreBooks = () => {
+const NoMoreBooks = ({txtMessage}) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.txt}>No more books results.</Text>
+      <Text style={styles.txt}>{txtMessage}</Text>
     </View>
   );
 };
